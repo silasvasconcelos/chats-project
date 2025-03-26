@@ -1,0 +1,7 @@
+[project]
+name = "chats"
+version = "0.1.0"
+description = "A simple chat application"
+readme = "README.md"
+requires-python = "~=3.12"
+dependencies = []
