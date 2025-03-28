@@ -1,0 +1,46 @@
+# Python target version
+target-version = "py312"
+
+[lint]
+# See more on https://docs.astral.sh/ruff/settings/#lint
+
+# Enables a specific set of rules. See more on https://docs.astral.sh/ruff/rules/
+select = [
+    "F",  # Flake8
+    "E",  # pycodestyle (erros)
+    "N",  # pep8-naming
+    "PL", # Pylint
+    "DJ", # Django
+]
+
+ignore = ["E501", "PLR0912", "PLR0915"]
+
+[lint.per-file-ignores]
+"setup/settings.py" = ["ALL"]
+"setup/drf_settings.py" = ["ALL"]
+"setup/sentry_settings.py" = ["ALL"]
+
+[lint.pylint]
+max-args = 10
+
+[format]
+# See more on https://docs.astral.sh/ruff/settings/#format
+
+exclude = [
+    ".git",
+    ".idea",
+    ".docker",
+    ".devcontainer",
+    ".vscode",
+    ".ruff_cache",
+    "docs",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "dist",
+    "build",
+    "supervisor",
+    "*.egg-info",
+    "**/migrations/**",
+    "manage.py",
+]
