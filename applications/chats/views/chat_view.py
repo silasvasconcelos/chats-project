@@ -4,24 +4,14 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from ..models import Chat
 from ..serializers import ChatSerializer
-from django.db import models
 from django.contrib.auth.models import User
-from drf_spectacular.utils import extend_schema, OpenApiParameter
-from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema
 from ..repositories.chat_repository import ChatRepository
 
 
 @extend_schema(
     tags=["Chats"],
     description="ViewSet for managing chat rooms and participants",
-    parameters=[
-        OpenApiParameter(
-            name="id",
-            type=OpenApiTypes.INT,
-            location=OpenApiParameter.PATH,
-            description="Chat room ID",
-        )
-    ],
 )
 class ChatViewSet(viewsets.ModelViewSet):
     """
@@ -36,10 +26,7 @@ class ChatViewSet(viewsets.ModelViewSet):
     chat_repository = ChatRepository()
 
     def get_queryset(self):
-        return Chat.objects.filter(
-            models.Q(created_by=self.request.user)
-            | models.Q(participants=self.request.user)
-        ).distinct()
+        return Chat.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
