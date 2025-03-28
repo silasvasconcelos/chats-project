@@ -5,6 +5,7 @@ description = "A simple chat application"
 readme = "README.md"
 requires-python = "~=3.12"
 dependencies = [
+    "commitizen>=4.4.1",
     "django>=5.1.7",
     "django-filter>=25.1",
     "djangorestframework>=3.16.0",
